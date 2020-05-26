@@ -13,7 +13,7 @@
            id="firstName">
           <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">insert your name
           <div *ngIf="firstName.errors.required"></div>
-          <div *ngIf="firstName.errors.minlength">First Name should more than 2 character.</div>
+          <div *ngIf="firstName.errors.minlength">First Name should have more than 2 character.</div>
           <div *ngIf="firstName.errors.maxlength">First Name is maximum 8 character.</div>
       </div>
   </div>
@@ -31,7 +31,7 @@
       <input 
       required 
       ngModel name="email" 
-      type="text" 
+      type="email" 
       #email="ngModel" 
       class="form-control" 
       id="email"
@@ -52,9 +52,13 @@
       type="password" 
       #pass="ngModel" 
       class="form-control" 
-      id="pass">
+      id="pass"
+      minlength="3">
       <div class="alert alert-danger" *ngIf="pass.touched && !pass.valid">
           password is required.
+        <div *ngIf="pass.errors.minlength">
+          your password should have more than 3 character.
+          </div>
       </div>
   </div>
     
