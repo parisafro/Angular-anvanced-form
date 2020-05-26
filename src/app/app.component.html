@@ -1,0 +1,64 @@
+<form #contactForm="ngForm" (ngSubmit)="submit(contactForm.value)">
+   
+  <div class="form-group">
+      <label for="firstName">FirstName</label>
+      <input 
+           required 
+           minlength="2" 
+           maxlength="8" 
+           ngModel name="firstName" 
+           type="text" 
+           #firstName="ngModel" 
+           class="form-control"
+           id="firstName">
+          <div class="alert alert-danger" *ngIf="firstName.touched && !firstName.valid">insert your name
+          <div *ngIf="firstName.errors.required"></div>
+          <div *ngIf="firstName.errors.minlength">First Name should more than 2 character.</div>
+          <div *ngIf="firstName.errors.maxlength">First Name is maximum 8 character.</div>
+      </div>
+  </div>
+   
+  <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input required ngModel name="lastName" type="text" #lastName="ngModel" class="form-control" id="lastName">
+      <div class="alert alert-danger" *ngIf="lastName.touched && !lastName.valid">
+          Last Name is required.
+      </div>
+  </div>
+   
+  <div class="form-group">
+      <label for="email">email</label>
+      <input 
+      required 
+      ngModel name="email" 
+      type="text" 
+      #email="ngModel" 
+      class="form-control" 
+      id="email"
+      pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+      <div class="alert alert-danger" *ngIf="email.touched && !email.valid">
+          email is required.
+          <div *ngIf="email.errors.pattern">
+            insert correct format of email
+          </div>
+      </div>
+  </div>
+
+    <div class="form-group">
+      <label for="pass">password</label>
+      <input 
+      required 
+      ngModel name="pass" 
+      type="password" 
+      #pass="ngModel" 
+      class="form-control" 
+      id="pass">
+      <div class="alert alert-danger" *ngIf="pass.touched && !pass.valid">
+          password is required.
+      </div>
+  </div>
+    
+  <button class="btn btn-primary" type="submit" 
+  [class.disabled]="!contactForm.valid">Submit</button>
+  
+</form>
